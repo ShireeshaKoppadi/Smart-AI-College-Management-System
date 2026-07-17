@@ -1,0 +1,254 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+
+body{
+
+    background:#f5f7fb;
+    color:#222;
+
+}
+
+
+
+/* Navbar */
+
+nav{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 60px;
+
+    background:#111827;
+
+    color:white;
+
+}
+
+
+
+.logo{
+
+    font-size:28px;
+    font-weight:bold;
+
+}
+
+
+
+nav ul{
+
+    display:flex;
+    list-style:none;
+    gap:30px;
+
+}
+
+
+nav li{
+
+    cursor:pointer;
+
+}
+
+
+
+/* Hero */
+
+.hero{
+
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+
+    padding:70px;
+
+}
+
+
+
+.hero-text{
+
+    width:50%;
+
+}
+
+
+.hero-text h1{
+
+    font-size:45px;
+
+}
+
+
+.hero-text span{
+
+    color:#2563eb;
+
+}
+
+
+.hero-text p{
+
+    margin-top:20px;
+    font-size:18px;
+    line-height:30px;
+
+}
+
+
+button{
+
+    margin-top:30px;
+
+    padding:15px 35px;
+
+    border:none;
+
+    background:#2563eb;
+
+    color:white;
+
+    border-radius:30px;
+
+    font-size:16px;
+
+}
+
+
+
+/* AI Card */
+
+
+.hero-card{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    box-shadow:0px 10px 30px #ccc;
+
+}
+
+
+
+.hero-card p{
+
+    padding:12px;
+
+}
+
+
+
+
+/* Statistics */
+
+
+.stats{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:30px;
+
+}
+
+
+.stats div{
+
+    background:white;
+
+    padding:30px;
+
+    width:200px;
+
+    text-align:center;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 20px #ddd;
+
+}
+
+
+.stats h2{
+
+    color:#2563eb;
+
+}
+
+
+
+/* Features */
+
+
+.features{
+
+    padding:60px;
+
+    text-align:center;
+
+}
+
+
+
+.cards{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:30px;
+
+    margin-top:30px;
+
+}
+
+
+
+.card{
+
+    background:white;
+
+    width:300px;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 5px 20px #ddd;
+
+}
+
+
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    transition:0.3s;
+
+}
+
+
+
+footer{
+
+    background:#111827;
+
+    color:white;
+
+    padding:20px;
+
+    text-align:center;
+
+}
