@@ -19,12 +19,12 @@
     </div>
 
     <ul>
-        <li>Home</li>
-        <li>Students</li>
-        <li>Faculty</li>
-        <li>Attendance</li>
-        <li>AI Prediction</li>
-    </ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/students">Students</a></li>
+    <li><a href="/faculty">Faculty</a></li>
+    <li><a href="/attendance">Attendance</a></li>
+    <li><a href="/prediction">AI Prediction</a></li>
+</ul>
 </nav>
 
 
@@ -46,9 +46,9 @@
         </p>
 
 
-        <button>
-            Explore Dashboard
-        </button>
+       <a href="{{ url_for('dashboard') }}" class="btn">
+    Explore Dashboard
+</a>
 
     </div>
 
