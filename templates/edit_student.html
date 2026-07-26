@@ -20,7 +20,7 @@
 
         <div class="card-body">
 
-            <form action="/update_student/{{ student[0] }}" method="POST">
+            <form action="/edit_student/{{ student[0] }}" method="POST">
 
                 <div class="mb-3">
                     <label class="form-label">Student Name</label>
@@ -93,6 +93,24 @@
                            name="cgpa"
                            value="{{ student[7] }}">
                 </div>
+
+
+                <div class="mb-3">
+    <label class="form-label">Attendance</label>
+    <input type="number"
+           class="form-control"
+           name="attendance"
+           value="{{ student[8] }}">
+</div>
+
+
+<div class="mb-3">
+    <label class="form-label">Marks</label>
+    <input type="number"
+           class="form-control"
+           name="marks"
+           value="{{ student[9] }}">
+</div>
 
                 <button type="submit" class="btn btn-warning">
                     Update Student

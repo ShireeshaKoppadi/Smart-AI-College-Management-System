@@ -131,27 +131,32 @@
 
     <div class="card shadow mt-4">
 
-        <div class="card-header bg-success text-white">
-            Prediction Result
-        </div>
+    <div class="card-header bg-success text-white">
+        <h4>Prediction Result</h4>
+    </div>
 
-        <div class="card-body">
+    <div class="card-body text-center">
 
-            <h4 class="text-success">
+        {% if result %}
+
+            <h2 class="text-success">{{ result }}</h2>
+
+        {% else %}
+
+            <h4 class="text-secondary">
                 Prediction will appear here...
             </h4>
 
             <p>
-                After connecting the Machine Learning model,
-                this section will display whether the student is
-                <strong>Excellent</strong>,
-                <strong>Average</strong>, or
-                <strong>Needs Improvement</strong>.
+                Enter student details and click
+                <strong>Predict Performance</strong>.
             </p>
 
-        </div>
+        {% endif %}
 
     </div>
+
+</div>
 
 </div>
 

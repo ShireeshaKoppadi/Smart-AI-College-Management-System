@@ -118,53 +118,34 @@
 
             <tbody>
 
-                <tr>
+{% for f in faculty %}
 
-                    <td>1</td>
-                    <td>Dr. Kumar</td>
-                    <td>FAC001</td>
-                    <td>AI & DS</td>
-                    <td>Ph.D</td>
-                    <td>12 Years</td>
+<tr>
 
-                    <td>
+    <td>{{ f[0] }}</td>
+    <td>{{ f[1] }}</td>
+    <td>{{ f[2] }}</td>
+    <td>{{ f[3] }}</td>
+    <td>{{ f[4] }}</td>
+    <td>{{ f[5] }}</td>
 
-                        <button class="btn btn-warning btn-sm">
-                            Edit
-                        </button>
+    <td>
 
-                        <button class="btn btn-danger btn-sm">
-                            Delete
-                        </button>
+        <a href="/edit_faculty/{{ f[0] }}" class="btn btn-warning btn-sm">
+            Edit
+        </a>
 
-                    </td>
+        <a href="/delete_faculty/{{ f[0] }}" class="btn btn-danger btn-sm">
+            Delete
+        </a>
 
-                </tr>
+    </td>
 
-                <tr>
+</tr>
 
-                    <td>2</td>
-                    <td>Mrs. Priya</td>
-                    <td>FAC002</td>
-                    <td>CSE</td>
-                    <td>M.Tech</td>
-                    <td>8 Years</td>
+{% endfor %}
 
-                    <td>
-
-                        <button class="btn btn-warning btn-sm">
-                            Edit
-                        </button>
-
-                        <button class="btn btn-danger btn-sm">
-                            Delete
-                        </button>
-
-                    </td>
-
-                </tr>
-
-            </tbody>
+</tbody>
 
         </table>
 
