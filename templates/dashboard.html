@@ -15,7 +15,7 @@
 <body class="bg-light">
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+<nav class="navbar navbar-expand-lg shadow custom-navbar">
     <div class="container-fluid">
 
         <a class="navbar-brand fw-bold" href="#">
@@ -68,6 +68,18 @@
         Dashboard
     </h2>
 
+    <div class="welcome-box">
+
+    <h3>Welcome, Shireesha 👋</h3>
+
+    <p>
+        Welcome back! Manage Students, Faculty, Attendance and AI Prediction from one place.
+    </p>
+
+    <h5 id="clock"></h5>
+
+</div>
+
     <!-- Statistics -->
 
     <div class="row">
@@ -80,9 +92,9 @@
 
                     <h5>Total Students</h5>
 
-                    <h2 class="text-primary">
-                        1200
-                    </h2>
+                   <h2 class="text-primary">
+<span class="counter" data-target="1200">0</span>
+</h2>
 
                 </div>
 
@@ -100,7 +112,7 @@
                     <h5>Faculty</h5>
 
                     <h2 class="text-success">
-                        80
+                        <span class="counter" data-target="80">0</span>
                     </h2>
 
                 </div>
@@ -119,7 +131,7 @@
                     <h5>Attendance</h5>
 
                     <h2 class="text-danger">
-                        95%
+                        <span class="counter" data-target="95">0</span>%
                     </h2>
 
                 </div>
@@ -138,7 +150,7 @@
                     <h5>Courses</h5>
 
                     <h2 class="text-warning">
-                        50
+                        <span class="counter" data-target="50">0</span>
                     </h2>
 
                 </div>
@@ -222,7 +234,58 @@
 </div>
 
 
+<script>
+
+function updateClock(){
+
+const now = new Date();
+
+document.getElementById("clock").innerHTML =
+now.toLocaleTimeString();
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+const counters=document.querySelectorAll(".counter");
+
+counters.forEach(counter=>{
+
+const update=()=>{
+
+const target=+counter.dataset.target;
+
+const current=+counter.innerText;
+
+const increment=target/100;
+
+if(current<target){
+
+counter.innerText=Math.ceil(current+increment);
+
+setTimeout(update,20);
+
+}
+
+else{
+
+counter.innerText=target;
+
+}
+
+}
+
+update();
+
+});
+
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
 
 </body>
 </html>
