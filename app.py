@@ -5,8 +5,12 @@ import os
 
 from database import init_db
 
-init_db()
+
 app = Flask(__name__)
+
+app.secret_key = "college123"
+
+init_db()
 
 app.secret_key = "college123"
 
@@ -128,12 +132,107 @@ def delete_faculty(id):
 
 @app.route("/attendance")
 def attendance():
-    return render_template("attendance.html")
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM attendance")
+
+    attendance = cursor.fetchall()
+
+    conn.close()
+
+    return render_template(
+        "attendance.html",
+        attendance=attendance
+    )
+
+
+
+
+# 👇 IKKADA paste cheyyali
+
+@app.route("/add_attendance", methods=["GET","POST"])
+def add_attendance():
+
+    if request.method=="POST":
+
+        name=request.form["name"]
+        branch=request.form["branch"]
+        date=request.form["date"]
+        status=request.form["status"]
+
+
+        conn=sqlite3.connect("college.db")
+        cursor=conn.cursor()
+
+        cursor.execute("""
+        INSERT INTO attendance
+        (name,branch,date,status)
+        VALUES(?,?,?,?)
+        """,
+        (name,branch,date,status))
+
+
+        conn.commit()
+        conn.close()
+
+
+        return redirect("/attendance")
+
+
+    return render_template("add_attendance.html")
+
+
+@app.route("/search_attendance")
+def search_attendance():
+
+    query=request.args.get("query")
+
+
+    conn=sqlite3.connect("college.db")
+    cursor=conn.cursor()
+
+
+    cursor.execute(
+    "SELECT * FROM attendance WHERE name LIKE ?",
+    ('%'+query+'%',)
+    )
+
+
+    attendance=cursor.fetchall()
+
+
+    conn.close()
+
+
+    return render_template(
+        "attendance.html",
+        attendance=attendance
+    )
+
+
+@app.route("/delete_attendance/<int:id>")
+def delete_attendance(id):
+
+    conn=sqlite3.connect("college.db")
+    cursor=conn.cursor()
+
+    cursor.execute(
+    "DELETE FROM attendance WHERE id=?",
+    (id,)
+    )
+
+    conn.commit()
+    conn.close()
+
+    return redirect("/attendance")
 
 @app.route("/prediction", methods=["GET", "POST"])
 def prediction():
 
     result = None
+    reasons = []
 
     if request.method == "POST":
 
@@ -141,18 +240,62 @@ def prediction():
         internal = float(request.form["internal"])
         assignment = float(request.form["assignment"])
 
-        score = (attendance * 0.30) + (internal * 0.50) + (assignment * 0.20)
+
+        score = (
+            (attendance * 0.30) +
+            (internal * 0.50) +
+            (assignment * 0.20)
+        )
+
 
         if score >= 80:
-            result = "Excellent"
+
+            result = "Excellent Performance"
+
+            if attendance >= 75:
+                reasons.append("Good attendance")
+
+            if internal >= 75:
+                reasons.append("High internal marks")
+
+            if assignment >= 75:
+                reasons.append("Good assignment score")
+
 
         elif score >= 60:
-            result = "Average"
+
+            result = "Average Performance"
+
+            if attendance < 75:
+                reasons.append("Improve attendance")
+
+            if internal < 75:
+                reasons.append("Improve internal marks")
+
+            if assignment < 75:
+                reasons.append("Improve assignment score")
+
 
         else:
+
             result = "Needs Improvement"
 
-    return render_template("prediction.html", result=result)
+            if attendance < 75:
+                reasons.append("Low attendance")
+
+            if internal < 50:
+                reasons.append("Low internal marks")
+
+            if assignment < 50:
+                reasons.append("Low assignment marks")
+
+
+    return render_template(
+        "prediction.html",
+        result=result,
+        reasons=reasons
+    )
+
 
 
 @app.route("/add_student", methods=["GET", "POST"])
@@ -219,6 +362,31 @@ def search():
 
     return render_template("students.html", students=students)
 
+@app.route("/search_faculty")
+def search_faculty():
+
+    query = request.args.get("query")
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT * FROM faculty WHERE name LIKE ?",
+        ('%' + query + '%',)
+    )
+
+    faculty = cursor.fetchall()
+
+    conn.close()
+
+    return render_template(
+        "faculty.html",
+        faculty=faculty
+    )
+
+
+
+    
 
 @app.route("/delete_student/<int:id>")
 def delete_student(id):
@@ -308,6 +476,56 @@ def edit_student(id):
     return render_template(
         "edit_student.html",
         student=student
+    )
+
+
+@app.route("/edit_attendance/<int:id>", methods=["GET", "POST"])
+def edit_attendance(id):
+
+    conn = sqlite3.connect("college.db")
+    cursor = conn.cursor()
+
+    if request.method == "POST":
+
+        name = request.form["name"]
+        branch = request.form["branch"]
+        date = request.form["date"]
+        status = request.form["status"]
+
+        cursor.execute("""
+        UPDATE attendance SET
+        name=?,
+        branch=?,
+        date=?,
+        status=?
+        WHERE id=?
+        """,
+        (
+            name,
+            branch,
+            date,
+            status,
+            id
+        ))
+
+        conn.commit()
+        conn.close()
+
+        return redirect("/attendance")
+
+
+    cursor.execute(
+        "SELECT * FROM attendance WHERE id=?",
+        (id,)
+    )
+
+    attendance = cursor.fetchone()
+
+    conn.close()
+
+    return render_template(
+        "edit_attendance.html",
+        attendance=attendance
     )
 
 UPLOAD_FOLDER = "uploads"
