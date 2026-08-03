@@ -29,6 +29,10 @@ nav{
 
     color:white;
 
+    position:sticky;
+top:0;
+z-index:1000;
+
 }
 
 
@@ -63,19 +67,21 @@ nav li{
 
 .hero{
 
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
+display:flex;
 
-    padding:70px;
+justify-content:space-between;
+
+align-items:center;
+
+padding:80px 100px;
+
+gap:80px;
 
 }
 
-
-
 .hero-text{
 
-    width:50%;
+flex:1;
 
 }
 
@@ -125,16 +131,41 @@ button{
 
 /* AI Card */
 
-
 .hero-card{
 
-    background:white;
+flex:1;
 
-    padding:35px;
+display:flex;
 
-    border-radius:20px;
+justify-content:center;
 
-    box-shadow:0px 10px 30px #ccc;
+align-items:center;
+
+}
+
+.hero-card img{
+
+width:450px;
+
+max-width:100%;
+
+animation:float 4s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-20px);
+
+}
 
 }
 
@@ -200,18 +231,18 @@ button{
 }
 
 
-
 .cards{
 
-    display:flex;
+display:grid;
 
-    justify-content:center;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 
-    gap:30px;
+gap:30px;
 
-    margin-top:30px;
+margin-top:40px;
 
 }
+
 
 
 
@@ -231,12 +262,11 @@ button{
 
 
 
+
 .card:hover{
-
-    transform:translateY(-10px);
-
-    transition:0.3s;
-
+transform:translateY(-15px) scale(1.05);
+box-shadow:0 15px 35px rgba(37,99,235,.3);
+transition:.4s;
 }
 
 
@@ -355,15 +385,123 @@ nav ul li a:hover{
 
 
 .btn{
-    display:inline-block;
-    margin-top:30px;
-    padding:15px 35px;
-    background:#2563eb;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
+display:inline-block;
+padding:15px 40px;
+background:linear-gradient(90deg,#2563eb,#06b6d4);
+color:white;
+text-decoration:none;
+border-radius:40px;
+font-weight:bold;
+transition:.4s;
 }
 
 .btn:hover{
-    background:#1d4ed8;
+transform:translateY(-5px);
+box-shadow:0 15px 30px rgba(0,0,0,.3);
+background:#1d4ed8;
+}
+
+
+/* ===== Custom Navbar ===== */
+
+.custom-navbar{
+    background: linear-gradient(90deg, #2563eb, #06b6d4);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+.custom-navbar .navbar-brand{
+    font-size:28px;
+    font-weight:bold;
+    color:white !important;
+}
+
+.custom-navbar .nav-link{
+    color:white !important;
+    font-size:18px;
+    font-weight:600;
+    margin-left:15px;
+    transition:.3s;
+}
+
+.custom-navbar .nav-link:hover{
+    color:#ffd700 !important;
+    transform:translateY(-2px);
+}
+
+.custom-navbar{
+background:linear-gradient(90deg,#2563eb,#06b6d4);
+padding:15px 25px;
+box-shadow:0 5px 20px rgba(0,0,0,.3);
+}
+
+.custom-navbar .navbar-brand{
+font-size:28px;
+font-weight:bold;
+color:white;
+}
+
+.custom-navbar .nav-link{
+color:white !important;
+font-weight:bold;
+margin-left:20px;
+transition:.3s;
+}
+
+.custom-navbar .nav-link:hover{
+color:#ffe066 !important;
+transform:translateY(-2px);
+}
+
+
+.welcome-box{
+
+background:linear-gradient(135deg,#2563eb,#06b6d4);
+
+padding:30px;
+
+border-radius:20px;
+
+color:white;
+
+margin-bottom:30px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+}
+
+.welcome-box h3{
+
+font-size:30px;
+
+font-weight:bold;
+
+}
+
+.welcome-box p{
+
+font-size:18px;
+
+margin-top:10px;
+
+}
+
+#clock{
+
+font-size:22px;
+
+font-weight:bold;
+
+margin-top:15px;
+
+}
+
+.hero-image{
+    width:35%;
+    text-align:center;
+}
+
+.hero-image img{
+    width:350px;
+    max-width:100%;
+    border-radius:20px;
 }
